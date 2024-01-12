@@ -1,0 +1,5 @@
+1. Выбрать клики у которых точно есть actions
+select click.* from click left join actions on click.id = actions.click_id where actions.id is not null;
+
+2. Выбрать клики у которых точно нету actions
+select click.* from click left join actions on click.id = actions.click_id where actions.id is null;

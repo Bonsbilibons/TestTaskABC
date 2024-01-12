@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+
+    php:
+        build:
+            dockerfile: ./php
+        container_name: php
+        volumes:
+            - ./src:/var/www/html
+
+    postgres:
+        image: postegres:latest
+        environment:
+            POSTGRES_PASSWORD: 1234
+            POSTGRES_DB: postegresdb
+            POSTGRES_USER: root
+        ports:
+            - "5432:5432"
