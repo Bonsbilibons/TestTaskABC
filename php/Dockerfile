@@ -1,7 +1,5 @@
 FROM php:8.1-fpm-alpine
 
-ADD php/www.conf /usr/local/etc/php-fpm.d/www.conf
-
 RUN mkdir -p /var/www/html
 
 ADD src /var/www/html
