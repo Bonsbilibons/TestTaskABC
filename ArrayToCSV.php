@@ -40,17 +40,3 @@ foreach ($data as $row) {
 }
 
 fclose($fp);
-
-
-//$fp = fopen('output.csv', 'w');
-//fputcsv($fp, ['Country name', 'Country code', 'City name', 'Lat', 'Long']);
-//foreach ($data as $row) {
-//    fputcsv($fp, [
-//        $row['country_name'],
-//        $row['country_code'],
-//        $row['city_name'],
-//        $row['lat'],
-//        $row['lng'],
-//    ]);
-//}
-//fclose($fp);
