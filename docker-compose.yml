@@ -1,19 +1,35 @@
 version: "3.9"
+volumes:
+    psql-data:
 
 services:
-
-    php:
+    php-app:
         build:
-            dockerfile: ./php
-        container_name: php
-        volumes:
-            - ./src:/var/www/html
+            dockerfile: php.dockerfile
+        image: myapp
+        container_name: php-app
+        depends_on:
+            - postgres
+        ports:
+            - 80:80
+        networks:
+            app-env:
 
     postgres:
-        image: postegres:latest
+        image: postgres:9.6
+        container_name: postgres
         environment:
             POSTGRES_PASSWORD: 1234
             POSTGRES_DB: postegresdb
             POSTGRES_USER: root
         ports:
             - "5432:5432"
+        volumes:
+            - psql-data:/var/lib/postgresql/data
+        networks:
+            app-env:
+            interface:
+
+networks:
+    app-env:
+    interface:
