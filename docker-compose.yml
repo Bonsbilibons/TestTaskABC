@@ -8,6 +8,8 @@ services:
             dockerfile: php.dockerfile
         image: myapp
         container_name: php-app
+        volumes:
+            - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
         depends_on:
             - postgres
         ports:

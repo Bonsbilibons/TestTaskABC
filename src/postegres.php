@@ -1,6 +1,6 @@
 <?php
 
-$conn = pg_connect("host=localhost dbname=postgres user=root password=1234");
+$conn = pg_connect("host=postgres dbname=postgres user=root password=1234");
 
 pg_query($conn, "create sequence public.click_new_id_seq;
 create table public.click
@@ -39,15 +39,15 @@ INSERT INTO public.click (id, ip, created_at, referer, user_agent) VALUES (DEFAU
 $resultWithActions = pg_query($conn, "select click.* from click left join actions on click.id = actions.click_id where actions.id is not null;");
 $resultWithoutActions = pg_query($conn, "select click.* from click left join actions on click.id = actions.click_id where actions.id is null;");
 
-echo "Clicks with actions: " . '<br>';
-echo "ID IP CREATED_AT REFERER USER_AGENT" . '<br>';
+echo "Clicks with actions: \n";
+echo "ID IP CREATED_AT REFERER USER_AGENT \n";
 while ($row = pg_fetch_assoc($resultWithActions)) {
-    echo($row['id'] . " " . $row['ip'] . " " . $row['created_at'] . " " . $row['referer'] . " " . $row['user_agent'] . '<br>' );
+    echo($row['id'] . " " . $row['ip'] . " " . $row['created_at'] . " " . $row['referer'] . " " . $row['user_agent'] . "\n" );
 }
 
-echo "Clicks without actions: " . '<br>';
+echo "Clicks without actions: \n";
 while ($row = pg_fetch_assoc($resultWithoutActions)) {
-    echo($row['id'] . " " . $row['ip'] . " " . $row['created_at'] . " " . $row['referer'] . " " . $row['user_agent'] . '<br>' );
+    echo($row['id'] . " " . $row['ip'] . " " . $row['created_at'] . " " . $row['referer'] . " " . $row['user_agent'] . "\n" );
 }
 
 pg_close($conn);
